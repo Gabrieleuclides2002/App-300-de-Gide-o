@@ -219,5 +219,5 @@ canvas.create_text(450,245, text='Cartão virtual', font=('Verdana',13))
 # Patrimônio
 canvas.create_rectangle(350,290,550,320, fill='light yellow')
 canvas.create_text(450,305, text='Patrimônio do clube', font=('Verdana',13))
-
+# olá
 janela.mainloop()
