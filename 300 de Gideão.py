@@ -117,7 +117,7 @@ def buttons(e):
         canvas2.place(x=0,y=0)
         canvas2.bind('<Button-1>',buttons2)
 
-        canvas2.create_rectangle(2,2,52,32, fill='white')
+        canvas2.create_oval(2,2,52,32, fill='white')
         canvas2.create_text(27,17, text='Menu', font=('Verdana',13), fill='black')
 
     ### Cadastramento ###
@@ -131,7 +131,7 @@ def buttons(e):
         canvas2.place(x=0,y=0)
         canvas2.bind('<Button-1>',buttons2)
 
-        canvas2.create_rectangle(2,2,52,32, fill='white')
+        canvas2.create_oval(2,2,52,32, fill='white')
         canvas2.create_text(27,17, text='Menu', font=('Verdana',13), fill='black')
 
         canvas2.create_text(100,100, text='Nome:', font=('Verdana',14,'bold'), fill='white')
@@ -173,16 +173,19 @@ def buttons(e):
         canvas2.place( x=0, y=0 )
         canvas2.bind('<Button-1>',buttons2)
 
-        canvas2.create_rectangle(2,2,52,32, fill='white')
+        canvas2.create_oval(2,2,52,32, fill='white')
         canvas2.create_text(27,17, text='Menu', font=('Verdana',13), fill='black')
 
         canvas2.create_line(300,0,300,500, fill='white')
 
-        bt_add_anot = Button(canvas2, text='Adicionar\nAnotação', font=('Castellar',14), bg='yellow', overrelief=GROOVE, activebackground='black', activeforeground='yellow')
-        bt_add_anot.place( x=77, y=100 )
-
         canvas3 = Canvas(canvas2, width=300, height=500, bg='#00FF00')
         canvas3.place( x=300, y=0 )
+
+        text_anot = Text(canvas3, font=('Verdana',12), width=300, height=25)
+        text_anot.place( x=0, y=46 )
+
+        bt_salvar = Button(canvas3, text='Salvar', activebackground='black', bg='yellow', activeforeground='yellow', font=('Times New Roman',17), overrelief=GROOVE)
+        bt_salvar.place( x=0, y=0 )
         
     if e.x >=350 and e.x <=550 and e.y >=230 and e.y <= 260:
         def buttons2(e):
@@ -194,7 +197,7 @@ def buttons(e):
         canvas2.place(x=0,y=0)
         canvas2.bind('<Button-1>',buttons2)
 
-        canvas2.create_rectangle(2,2,52,32, fill='white')
+        canvas2.create_oval(2,2,52,32, fill='white')
         canvas2.create_text(27,17, text='Menu', font=('Verdana',13), fill='black')
 
     ### Patrimônio ###
@@ -204,11 +207,31 @@ def buttons(e):
                 canvas2.destroy()
             return
         
+        def conc():
+##            deposito = str(ed_dep.get())
+##            saque = str(ed_sac.get())
+##            if deposito == '':
+##                tot = saque
+##                lb_caixa['text'] = tot
+##            if saque == '':
+##                deposito = int(ed_dep.get())
+##                saque = int(ed_sac.get())
+##                tot = deposito - saque
+##                tot2 = str(tot)
+##                lb_caixa['text'] = tot2
+##            else:
+##                deposito = ed_dep.get()
+##                saque = ed_sac.get()
+##                tot = deposito - saque
+##                tot2 = str(tot)
+##                lb_caixa['text'] = tot2
+            return
+        
         canvas2 = Canvas(canvas, width=600, height=500, bg='green')
         canvas2.place(x=0,y=0)
         canvas2.bind('<Button-1>',buttons2)
 
-        canvas2.create_rectangle(2,2,52,32, fill='white')
+        canvas2.create_oval(2,2,52,32, fill='white')
         canvas2.create_text(27,17, text='Menu', font=('Verdana',13), fill='black')
 
         canvas2.create_text(200,100, text='Caixa do Clube:', font=('Verdana',14,'bold'), fill='white')
@@ -230,7 +253,7 @@ def buttons(e):
         canvas2.create_line(215,259,215+111,259, fill='white')
 
         # Botão Concluir
-        bt_concluir = Button(canvas2, text='Concluir', font=('Castellar',14), bg='yellow', overrelief=GROOVE, activebackground='black', activeforeground='yellow')
+        bt_concluir = Button(canvas2, text='Concluir', font=('Castellar',14), bg='yellow', overrelief=GROOVE, activebackground='black', activeforeground='yellow', command=conc)
         bt_concluir.place( x=235, y=300 )
 
     return
@@ -248,7 +271,7 @@ canvas.bind('<Button-1>',buttons)
 canvas.bind('<Motion>',cor)
 
 imagem = PhotoImage(file='photo.png')
-lb_fundo = Label(canvas, image=imagem, width=300, height=500, bg='#F7F7F7', cursor='heart')
+lb_fundo = Label(canvas, image=imagem, width=300, height=500, bg='#F7F7F7', cursor='heart')#F7F7F7
 lb_fundo.place( x=2, y=2 )
 
 # Membros
