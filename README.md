@@ -1,2 +1,2 @@
-# App-300-de-Gide-o
-app para a especialidade de informática programável
+# App-300-de-Gideão
+gestor para clube de Desbravador
