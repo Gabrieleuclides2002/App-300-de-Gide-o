@@ -208,23 +208,31 @@ def buttons(e):
             return
         
         def conc():
-##            deposito = str(ed_dep.get())
-##            saque = str(ed_sac.get())
-##            if deposito == '':
-##                tot = saque
-##                lb_caixa['text'] = tot
-##            if saque == '':
-##                deposito = int(ed_dep.get())
-##                saque = int(ed_sac.get())
-##                tot = deposito - saque
-##                tot2 = str(tot)
-##                lb_caixa['text'] = tot2
-##            else:
-##                deposito = ed_dep.get()
-##                saque = ed_sac.get()
-##                tot = deposito - saque
-##                tot2 = str(tot)
-##                lb_caixa['text'] = tot2
+            if ed_sac.get() == '' and ed_dep.get() == '':
+                lb_caixa['text'] = 0
+            if ed_dep.get() == '':
+                deposito = str(ed_dep.get())
+                saque = int(ed_sac.get())
+            if ed_sac.get() == '':
+                saque = str(ed_sac.get())
+                deposito = int(ed_dep.get())
+            if ed_sac.get() != '' and ed_dep.get() != '':
+                saque = int(ed_dep.get())
+                deposito = int(ed_dep.get())
+                
+            if deposito == '':
+                tot = int(lb_caixa['text']) - saque
+                tot2 = str(tot)
+                lb_caixa['text'] = tot2
+                
+            if saque == '':
+                tot = int(lb_caixa['text']) + deposito
+                tot2 = str(tot)
+                lb_caixa['text'] = tot2
+                
+            if saque != '' and deposito != '':
+                lb_caixa['text'] = str(int(ed_dep.get()) - int(ed_sac.get()))
+                
             return
         
         canvas2 = Canvas(canvas, width=600, height=500, bg='green')
@@ -250,11 +258,16 @@ def buttons(e):
         # Sacar
         ed_sac =  Entry(canvas2, border=0, width=10, font=('Verdana',13), bg='green', fg='white')
         ed_sac.place( x=215, y=237 )
-        canvas2.create_line(215,259,215+111,259, fill='white')
+        canvas2.create_line(215,259,326,259, fill='white')
 
         # Botão Concluir
         bt_concluir = Button(canvas2, text='Concluir', font=('Castellar',14), bg='yellow', overrelief=GROOVE, activebackground='black', activeforeground='yellow', command=conc)
         bt_concluir.place( x=235, y=300 )
+
+        # Alerta
+        canvas2.create_rectangle(20,350,580,450, fill='white')
+        canvas2.create_text(300,400, text='*A cada alteração certifique-se de utilizar apenas uma opção*\n                             ( Depositar / Sacar )', font=('Arial',13,'bold'))
+        
 
     return
 
@@ -271,7 +284,7 @@ canvas.bind('<Button-1>',buttons)
 canvas.bind('<Motion>',cor)
 
 imagem = PhotoImage(file='photo.png')
-lb_fundo = Label(canvas, image=imagem, width=300, height=500, bg='#F7F7F7', cursor='heart')#F7F7F7
+lb_fundo = Label(canvas, image=imagem, width=300, height=500, bg='#F7F7F7', cursor='heart')
 lb_fundo.place( x=2, y=2 )
 
 # Membros
